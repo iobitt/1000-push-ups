@@ -13,7 +13,7 @@ test:
   database: 1000-push-ups-test 
   username: postgres
   password: password
-  port: 5678
+  port: 5432
   host: localhost
   pool: 5
   timeout: 5000
@@ -23,7 +23,7 @@ production:
   database: 1000-push-ups 
   username: postgres 
   password: password 
-  port: 5678
-  host: localhost  
+  port: 5432
+  host: database 
   pool: 5
   timeout: 5000
