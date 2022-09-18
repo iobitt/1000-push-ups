@@ -1,0 +1,29 @@
+# Для локальной разработки
+version: "3.9"
+services:
+  app:
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    command: /bin/sh -c "bundle exec rake db:setup && bundle exec rake bot:run"
+    environment:
+      APP_ENV: development
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: password
+      DATABASE_HOST: database
+      TAG_BOT_TOKEN: # need your token from @BotFather
+      ADMIN_CHAT_ID: # optional
+  database:
+    image: postgres:12.1
+    environment:
+      POSTGRES_DB: 1000-push-ups-dev 
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5678:5432"
+volumes:
+  db_data:
